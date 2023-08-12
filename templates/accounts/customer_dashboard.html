@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="main-section">
+    <h2>This is the customer dashboard </h2>
+    {{request.user.get_role}}
+</div>
+{% include 'includes/alert.html' %}
+{% endblock content %}
