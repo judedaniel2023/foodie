@@ -153,3 +153,13 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.INFO: 'info',
 }
+
+
+
+MAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER="judedaniel9@gmail.com"
+EMAIL_HOST_PASSWORD="wamtmecwqdqtixbd"
+EMAIL_USE_TLS=True
+DEFAULT_FROM_EMAIL='FoodOnline Marketplace <judedaniel9@gmail.com>'
