@@ -1,4 +1,3 @@
-from email.message import EmailMessage
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
@@ -55,3 +54,11 @@ def send_password_reset_email(request, user):
 
     to_email = user.email
     send_mail(mail_subject,message ,settings.DEFAULT_FROM_EMAIL, [to_email, "danieljude799@gmail.com"], fail_silently=False)
+
+
+
+def send_notification_email(mail_subject, mail_template, context):
+    from_email = settings.DEFAULT_FROM_EMAIL
+    message = render_to_string(mail_template, context)
+    to_email = context["user"].email
+    send_mail(mail_subject, message, from_email, [to_email])

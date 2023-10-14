@@ -9,7 +9,8 @@ from .utils import send_verification_email
 from vender.forms import VendorForm
 from django.core.exceptions import PermissionDenied
 from django.utils.http import  urlsafe_base64_decode
-from django.contrib.auth.tokens import default_token_generator  
+from django.contrib.auth.tokens import default_token_generator 
+from  vender.models import Vender
 
 def check_role_vendor(user):
     if user.role == 1:
@@ -128,10 +129,11 @@ def customer_dashboard(request):
 @login_required(login_url='login')
 @user_passes_test(check_role_vendor)
 def vendor_dashboard(request):
-    # if request.user.get_role() is not 'Vendor':
-        # messages.error(request, "Permision denied")
-        # return redirect('my_account')
-    return render(request, 'accounts/vendor_dashboard.html')
+    vendor = Vender.objects.get(user = request.user)
+    context = {
+        'vendor': vendor
+    }
+    return render(request, 'accounts/vendor_dashboard.html', context)
 
 @login_required(login_url='login')
 def my_account(request):
